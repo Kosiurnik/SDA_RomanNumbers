@@ -4,13 +4,14 @@ class RomanNumberController {
 
     private int inputFormat;
     private int outputFormat;
+    private Scanner scanner;
 
     RomanNumberController() {
         this.inputFormat = 10;
         this.outputFormat = 10;
     }
 
-    int getInputFormat() {
+    private int getInputFormat() {
         return inputFormat;
     }
 
@@ -18,7 +19,7 @@ class RomanNumberController {
         this.inputFormat = inputFormat;
     }
 
-    int getOutputFormat() {
+    private int getOutputFormat() {
         return outputFormat;
     }
 
@@ -26,7 +27,7 @@ class RomanNumberController {
         this.outputFormat = outputFormat;
     }
 
-    void convertToRoman(Scanner scanner) {
+    private void convertToRoman() {
         System.out.print("Podaj liczbę do zamiany na rzymską: ");
         scanner.nextLine();
         String numString = scanner.nextLine().toUpperCase();
@@ -44,7 +45,7 @@ class RomanNumberController {
 
     }
 
-    void convertFromRoman(Scanner scanner) {
+    private void convertFromRoman() {
         System.out.print("Podaj liczbę rzymską do zamiany: ");
         scanner.nextLine();
         String romanString = scanner.nextLine().toUpperCase();
@@ -55,7 +56,7 @@ class RomanNumberController {
         }
     }
 
-    void countSymbols(Scanner scanner){
+    private void countSymbols(){
         System.out.print("Podaj ciąg zawierający symbole rzymskie: ");
         scanner.nextLine();
         String romanString = scanner.nextLine().toUpperCase();
@@ -66,7 +67,7 @@ class RomanNumberController {
         }
 
     }
-    void changeInputFormat(Scanner scanner){
+    private void changeInputFormat(){
         System.out.print("Podaj nowy format wejścia: ");
         int format = scanner.nextInt();
         System.out.println();
@@ -77,7 +78,7 @@ class RomanNumberController {
             System.out.println("Format musi mieścić się w zakresie od 2 do 36");
         }
     }
-    void changeOutputFormat(Scanner scanner){
+    private void changeOutputFormat(){
         System.out.print("Podaj nowy format wyjścia: ");
         int format = scanner.nextInt();
         System.out.println();
@@ -88,4 +89,45 @@ class RomanNumberController {
             System.out.println("Format musi mieścić się w zakresie od 2 do 36");
         }
     }
+
+    void run() {
+        scanner = new Scanner(System.in);
+        System.out.println("Konwerter liczb rzymskich");
+        System.out.println();
+        boolean exit = false;
+        do {
+            System.out.println("Wybierz opcję");
+            System.out.println("1: Policz symbole");
+            System.out.println("2: Zmień format wejściowy (obecnie " + getInputFormat() + ")");
+            System.out.println("3: Zmień format wyjściowy (obecnie " + getOutputFormat() + ")");
+            System.out.println("4: Zamień na rzymską");
+            System.out.println("5: Zamień rzymską na dowolną liczbę");
+            System.out.println("0: Wyjdź z aplikacji");
+            switch (scanner.nextInt()) {
+                case 1:
+                    countSymbols();
+                    break;
+                case 2:
+                    changeInputFormat();
+                    break;
+                case 3:
+                    changeOutputFormat();
+                    break;
+                case 4:
+                    convertToRoman();
+                    break;
+                case 5:
+                    convertFromRoman();
+                    break;
+                case 0:
+                    exit = true;
+                    break;
+                default:
+                    System.out.println("Podano nieprawidłową opcję.");
+                    System.out.println();
+            }
+        } while (!exit);
+        scanner.close();
+    }
+
 }
