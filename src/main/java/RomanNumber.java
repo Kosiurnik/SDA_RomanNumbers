@@ -1,11 +1,11 @@
 class RomanNumber {
 
     static String toRoman(String input, int radix) throws NumberFormatException{
-        if(radix>=2){
+        if(radix>=Character.MIN_RADIX&&radix<=Character.MAX_RADIX){
             return ConvertFromInt(Integer.parseInt(input,radix));
         }
         else
-            throw new IllegalArgumentException("Radix musi być większy lub równy 2");
+            throw new IllegalArgumentException("Radix musi być w przedziale od 2 do 36");
     }
 
     static String toRoman(int input){
@@ -20,10 +20,14 @@ class RomanNumber {
     }
 
     static String fromRoman(String romanNum, int radix){
-        if(isProperRomanNumber(romanNum))
-            return Integer.toString(fromRoman(romanNum),radix);
-        else
-            throw new IllegalArgumentException("Niepoprawna rzymska liczba!");
+        if(radix>=Character.MIN_RADIX&&radix<=Character.MAX_RADIX){
+            if(isProperRomanNumber(romanNum))
+                return Integer.toString(fromRoman(romanNum),radix);
+            else
+                throw new IllegalArgumentException("Niepoprawna rzymska liczba!");
+        }else{
+            throw new IllegalArgumentException("Radix musi być w przedziale od 2 do 36");
+        }
     }
 
     static int countSymbols(String romanNum){
