@@ -30,7 +30,6 @@ class RomanNumberTest {
         assertThat(RomanNumber.toRoman(number,radix)).isEqualTo(romanNum);
     }
 
-
     @Test
     void IntToRomanTest(){
         assertThat(RomanNumber.toRoman(1)).isEqualTo("I");

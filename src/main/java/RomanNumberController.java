@@ -33,7 +33,7 @@ class RomanNumberController {
         System.out.print("Podaj liczbę rzymską do zamiany: ");
         scanner.nextLine();
         String romanString = scanner.nextLine().toUpperCase();
-        if(RomanNumber.isValid(romanString)){
+        if(RomanNumber.isProperRomanNumber(romanString)){
             System.out.println("Wartość: "+RomanNumber.fromRoman(romanString,outputFormat));
         }else{
             System.out.println("Podany ciąg nie jest cyfrą rzymską");

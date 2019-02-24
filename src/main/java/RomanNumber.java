@@ -19,7 +19,7 @@ class RomanNumber {
             throw new IllegalArgumentException("Niepoprawna rzymska liczba!");
     }
 
-    static String fromRoman(String romanNum, int radix){
+    static String fromRoman(String romanNum, int radix) throws NumberFormatException{
         if(radix>=Character.MIN_RADIX&&radix<=Character.MAX_RADIX){
             if(isProperRomanNumber(romanNum))
                 return Integer.toString(fromRoman(romanNum),radix);
